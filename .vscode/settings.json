@@ -1,0 +1,8 @@
+{
+  "python.defaultInterpreterPath": ".venv/bin/python",
+  "python.analysis.extraPaths": ["./src"],
+  "python.analysis.autoImportCompletions": true,
+  "python.languageServer": "Pylance",
+  "editor.formatOnSave": false,
+  "editor.defaultFormatter": "ms-python.python"
+}
