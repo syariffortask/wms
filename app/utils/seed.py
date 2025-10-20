@@ -12,8 +12,8 @@ def seed_users():
     with Session(engine) as session:
         # 🔹 1. Definisikan user yang ingin di-seed
         users = [
-            User(name="Syarif", nik="S0001", role=Role.admin, password=hash_password("123")),
-            User(name="user", nik="S0002", role=Role.user, password=hash_password("123")),
+            User(name="Syarif", nik="s0001", role=Role.admin, password=hash_password("123")),
+            User(name="user", nik="s0002", role=Role.user, password=hash_password("123")),
         ]
 
         # 🔹 2. Ambil semua NIK yang sudah ada di DB

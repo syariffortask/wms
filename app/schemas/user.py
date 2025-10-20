@@ -5,7 +5,7 @@ from app.models.user import Role
 
 class UserRead(BaseModel):
     id: int
-    username: str
+    name: str
     nik: str
     role: Role
     is_active: bool
@@ -25,7 +25,7 @@ class UserReadSimple(BaseModel):
 
 
 class UserCreate(BaseModel):
-    username: str
+    name: str
     nik: str
     role: Role = Role.user
     password: str
