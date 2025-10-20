@@ -5,13 +5,11 @@ from app.models import Item
 from datetime import datetime
 
 
-
-
 def get_item_service(session: Session, item_id: int) -> Optional[Item]:
     return session.get(Item, item_id)
 
 def get_items_service(session: Session) -> list[Item]:
-    return session.exec(select(Item)).all()
+    return session.exec(select(Item).where(Item.is_deleted == False)).all()
 
 def update_item_service(session: Session, data:ItemUpdate, item_id: int) -> Optional[Item]:
     try:

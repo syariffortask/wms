@@ -22,3 +22,6 @@ class ItemRead(ItemCreate):
 
     class Config:
         from_attributes = True
+
+class ItemDelete(BaseModel):
+    is_deleted: bool

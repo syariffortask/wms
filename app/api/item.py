@@ -5,9 +5,8 @@ from app.controller.item_controller import create_item_controller
 from app.controller.item_controller import get_items_controller
 from app.controller.item_controller import get_item_controller
 from app.controller.item_controller import update_item_controller
+from app.controller.item_controller import delete_item_controller
 from app.core.database import get_session
-
-from app.models import Item
 
 router = APIRouter(
     prefix="/items",
@@ -16,19 +15,23 @@ router = APIRouter(
 )
 
 @router.get("/", response_model=list[ItemRead])
-async def read_items(session: Session =Depends(get_session)):
-    return await get_items_controller(session)
+def read_items(session: Session =Depends(get_session)):
+    return get_items_controller(session)
 
 
 @router.post("/", response_model=ItemRead)
-async def create_item(data: ItemCreate, session: Session = Depends(get_session)):
-    return await create_item_controller(session, data)
+def create_item(data: ItemCreate, session: Session = Depends(get_session)):
+    return create_item_controller(session, data)
 
 
-@router.get("/{item_id}")
-async def read_item(item_id: int, session: Session = Depends(get_session)):
-    return await get_item_controller(session, item_id)
+@router.get("/{item_id}", response_model=ItemRead)
+def read_item(item_id: int, session: Session = Depends(get_session)):
+    return get_item_controller(session, item_id)
 
 @router.put("/{item_id}")
-async def update_item(item_id: int, data:ItemUpdate, session: Session = Depends(get_session)):
-    return await update_item_controller(session, data, item_id)
+def update_item(item_id: int, data:ItemUpdate, session: Session = Depends(get_session)):
+    return update_item_controller(session, data, item_id)
+
+@router.delete("/{item_id}")
+def delete_item(item_id: int, session: Session = Depends(get_session)):
+    return delete_item_controller(session, item_id)
