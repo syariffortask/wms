@@ -16,6 +16,9 @@ class ItemUpdate(BaseModel):
 
 class ItemRead(ItemCreate):
     id: int
+    name: str
+    sku: str
+    rack: str
     stock: int
     created_at: datetime
     updated_at: datetime

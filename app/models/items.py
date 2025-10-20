@@ -2,9 +2,8 @@ from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional, List, TYPE_CHECKING
 from datetime import datetime
 
-
 if TYPE_CHECKING:
-    from .transaction import Transaction  # perbaiki nama file
+    from .transaction import TransactionItem  # perbaiki nama file
 
 
 class Item(SQLModel, table=True):
@@ -20,4 +19,4 @@ class Item(SQLModel, table=True):
     is_active: bool = Field(default=True)
     is_deleted: bool = Field(default=False)
 
-    transactions: List["Transaction"] = Relationship(back_populates="item")
+    transaction_items: List["TransactionItem"] = Relationship(back_populates="item")

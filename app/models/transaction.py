@@ -14,10 +14,23 @@ class Transaction(SQLModel, table=True):
     __tablename__ = "transactions"
 
     id: Optional[int] = Field(default=None, primary_key=True)
-    item_id: int = Field(foreign_key="items.id")
-    qty: int
+    trx_code: str = Field(unique=True, index=True)
     trx_type: TrxType = Field(default=TrxType.IN)
-    notes: Optional[str] = None
+    note: str = Field(nullable=True)
     created_at: datetime = Field(default_factory=datetime.now)
 
-    item: Optional["Item"] = Relationship(back_populates="transactions")
+    # relasi
+    items: List["TransactionItem"] = Relationship(back_populates="transaction")
+
+
+class TransactionItem(SQLModel, table=True):
+    __tablename__ = "transaction_items"
+
+    id: Optional[int] = Field(default=None, primary_key=True)
+    transaction_id: int = Field(foreign_key="transactions.id")
+    item_id: int = Field(foreign_key="items.id")
+    qty: int
+
+    # relasi
+    transaction: Optional["Transaction"] = Relationship(back_populates="items")
+    item: Optional["Item"] = Relationship(back_populates="transaction_items")
