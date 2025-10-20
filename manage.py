@@ -2,6 +2,7 @@ import typer
 from app.core.database import create_db_and_tables, drop_db_and_tables, get_session
 from app.core.security import hash_password
 from app.models import User
+from app.utils.seed import run_seed
 
 
 app = typer.Typer()
@@ -31,7 +32,9 @@ def createuser():
     session.commit()
     print("✅  Superuser created")
 
-    
+@app.command()
+def seed():
+    run_seed()    
     
     
 if __name__ == "__main__":

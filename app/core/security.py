@@ -8,7 +8,8 @@ from app.models import User
 from app.core.database import get_session
 from app.core.config import settings
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
+
 security = HTTPBearer()
 
 

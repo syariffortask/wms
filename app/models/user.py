@@ -17,7 +17,7 @@ class User(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     nik: str = Field(unique=True, index=True)
     name: str = Field(nullable=False)
-    password: str = Field(nullable=False)  # gunakan bcrypt hash nanti
+    password: str
     role: Role = Field(default=Role.user)
     is_active: bool = Field(default=True)
     is_deleted: bool = Field(default=False)
