@@ -55,4 +55,5 @@ Sebelum memulai, pastikan kamu sudah menginstal:
    uv run fastapi run
 
    ```
+   aplikasi akan jalan di port 8000
 
